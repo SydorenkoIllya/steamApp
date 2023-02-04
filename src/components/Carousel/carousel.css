@@ -1,0 +1,42 @@
+.btn-pages {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background-color: #5B5E63;
+    color: white;
+    font-size: 12px;
+    font-weight: 400;
+    margin: 0 3px;
+    min-width: 30px;
+    max-width: 30px;
+
+}
+
+.arrow {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background-color: #5B5E63;
+    rotate: 90deg;
+    background-image: url('../../images/arrow.svg')
+}
+
+.arrow-next {
+    rotate: 270deg;
+}
+
+.visibleWindow {
+    display: flex;
+    justify-content: flex-start;
+    overflow: hidden;
+    width: 108px;
+}
+
+.btns-list {
+    display: flex;
+    transition: translate;
+    transition-property: transform;
+    transition-duration: 300ms;
+}

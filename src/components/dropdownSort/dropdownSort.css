@@ -1,0 +1,51 @@
+.sortDropdown {
+    position: relative;
+    background-color: var(--bg);
+    height: 36px;
+    width: 200px;
+    border-radius: 10px;
+    display: flex;
+    padding: 0 6px 0 18px;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+}
+
+.sortDropdown-text {
+    font-size: 17px;
+    font-weight: 300;
+    color: #FFFFFF;
+}
+
+.dropdownSort {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: absolute;
+    top: 42px;
+    left: 0;
+    height: 56px;
+    width: 200px;
+    border-radius: 10px;
+    background-color: var(--bg);
+    padding: 4px 14px 6px 20px;
+}
+
+.union {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+
+.btn-sort {
+    width: 100%;
+    text-align: start;
+    background-color: var(--bg);
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}

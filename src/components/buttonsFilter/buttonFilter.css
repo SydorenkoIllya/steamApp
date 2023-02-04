@@ -1,0 +1,20 @@
+.twoButtons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #FFFFFF;
+    font-size: 14px;
+    padding: 0 17px;
+    background-color: var(--bg);
+    width: 150px;
+    height: 37px;
+    border-radius: 10px
+}
+
+.twoButtons-each {
+    background-color: var(--bg);
+    color: white;
+    border: none;
+    cursor: pointer;
+    user-select: none;
+}

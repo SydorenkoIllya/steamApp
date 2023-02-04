@@ -1,0 +1,15 @@
+.games-list {
+    display: grid;
+    height: 500px;
+    margin-top: 80px;
+    padding: 0 15px;
+    grid-template-columns: 262px 262px 262px 262px;
+    grid-template-rows: 209px 209px;
+    gap: 20px;
+    justify-content: center;
+    vertical-align: center;
+}
+
+.games-item {
+    background-color: #fff;
+}
