@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import './carousel.css'
-import { useHttp } from '../../hooks/httpHook'
+import { pageChanged } from './carouselSlice'
+import { useDispatch } from 'react-redux'
+import { useGetGamesQuery } from '../../api/apiSlice'
 
 
 
@@ -10,35 +12,20 @@ const Carousel: React.FC = () => {
     const [offset, setOffset] = useState<number>(0)
     const [count, setCount] = useState<number>(1)
     const [pages, setPages] = useState<number>(0)
-
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': '3eacbfc688msh7a78712d81522b8p1f5170jsn6af9e54d8b39',
-            'X-RapidAPI-Host': 'steam2.p.rapidapi.com'
-        }
-    };
+    const dispatch = useDispatch()
 
 
-    useEffect(() => {
 
-        // fetch('https://steam2.p.rapidapi.com/search/Counter/page/1', options)
-        //     .then(response => response.json())
-        //     .then(response => console.log(response))
-        //     .catch(err => console.error(err));
-        setPages(scrollsCount())
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-    const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    const scrollsCount = () => {
-        const count = Math.ceil(nums.length / 3)
-        return count
-    }
-
-    const { request } = useHttp()
-
-
+    const {data: heroes = []} = useGetGamesQuery('')
+                                        //25                //25                    // 4
+    const numss = heroes.slice(0, (heroes.length - (heroes.length  - Math.ceil((heroes.length / 8))))) 
     console.log('render');
+    
+    useEffect(() => {
+        setPages(Math.ceil(numss.length / 3))      
+    }, [numss])
+
+
     const handleLeftArrowClick = () => {
         if (offset === 0) return
         setCount(count - 1)
@@ -59,8 +46,8 @@ const Carousel: React.FC = () => {
             <button onClick={handleLeftArrowClick} className='arrow' />
             <div className='visibleWindow'>
                 <div className='btns-list' style={{ transform: `translateX(-${offset}px)` }}>
-                    {nums.map((i => (
-                        <button key={i} className='btn-pages'>{i}</button>
+                    {numss.map(((i, index) => (
+                        <button onClick={() => dispatch(pageChanged(index + 1))} key={i.appId} className='btn-pages'>{index + 1}</button>
                     )))}
                 </div>
             </div>
