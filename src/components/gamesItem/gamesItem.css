@@ -1,0 +1,48 @@
+.games-item {
+    position: relative;
+    background-color: #17323A;
+}
+
+.games-img {
+    width: 263px;
+    height: 99px;
+    object-fit: cover;
+}
+
+.games-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 9px 11px 10px;
+    height: 110px;
+}
+
+.games-heart {
+    width: 24px;
+    height: 21px
+}
+
+.games-title {
+    color: white;
+    height: 47px;
+    font-weight: 300;
+    font-size: 18px;
+}
+
+.games-released {
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.games-price {
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.games-play {
+    position: absolute;
+    left: 199px;
+    top: 76px;
+    cursor: pointer;
+}

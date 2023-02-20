@@ -12,6 +12,9 @@
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "bootstrap": "^5.2.3",
+    "dayjs": "^1.11.7",
+    "debounce": "^1.2.1",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",
     "react-dom": "^18.2.0",
@@ -19,8 +22,10 @@
     "react-scripts": "5.0.1",
     "react-slick": "^0.29.0",
     "react-transition-group": "^4.4.5",
+    "redux-persist": "^6.0.0",
     "slick-carousel": "^1.8.1",
     "typescript": "^4.9.4",
+    "uuid4": "^2.0.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -48,6 +53,8 @@
     ]
   },
   "devDependencies": {
-    "@types/react-slick": "^0.23.10"
+    "@types/debounce": "^1.2.1",
+    "@types/react-slick": "^0.23.10",
+    "@types/uuid4": "^2.0.0"
   }
 }

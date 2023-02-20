@@ -6,25 +6,27 @@ interface IPost {
     title: string,
     url: string,
     imgUrl: string,
-    realeased: string,
+    released: string,
     reviewSummary: string,
     price: string
 }
+
+
 export const apiSlice = createApi({
     reducerPath: 'api',
-    baseQuery: fetchBaseQuery({ baseUrl: 'https://steam2.p.rapidapi.com'}),
+    baseQuery: fetchBaseQuery({ baseUrl: 'https://steam2.p.rapidapi.com/' }),
     endpoints: builder => ({
         getGames: builder.query<IPost[], string>({
             query: () => ({
-                url: '/search/Counter/page/1',
+                url: 'search/Counter/page/1',
                 headers: {
-                    'X-RapidAPI-Key': '3eacbfc688msh7a78712d81522b8p1f5170jsn6af9e54d8b39',
+                    'X-RapidAPI-Key': '97cdc642b2mshc7dd995f011a6e4p1a15cejsnd12161e68a80',
                     'X-RapidAPI-Host': 'steam2.p.rapidapi.com'
-                  }
+                }
             })
         })
     })
 
 })
 
-export const {useGetGamesQuery} = apiSlice
+export const { useGetGamesQuery } = apiSlice

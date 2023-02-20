@@ -1,42 +1,51 @@
 import { useEffect, useState } from 'react'
 import './carousel.css'
-import { pageChanged } from './carouselSlice'
+import { pageChanged, setMinusCount, setMinusOffset, setPlusCount, setPlusOffset } from './carouselSlice'
 import { useDispatch } from 'react-redux'
-import { useGetGamesQuery } from '../../api/apiSlice'
-
-
-
+import { useAppSelector } from '../../hooks/typedHooks'
 
 const Carousel: React.FC = () => {
 
-    const [offset, setOffset] = useState<number>(0)
-    const [count, setCount] = useState<number>(1)
+    // const [count, setCount] = useState<number>(1)
     const [pages, setPages] = useState<number>(0)
     const dispatch = useDispatch()
+    const count = useAppSelector(state => state.pages.count)
+    const globalStateGames = useAppSelector(state => state.games.gamesList)
+    const offset = useAppSelector(state => state.pages.offset)
 
+    const searchValue = useAppSelector(state => state.games.searchText)
+    //25                //25                    // 4
+    const globalStateGamesFiltered = globalStateGames.filter(i => {
+        return i.title.toLowerCase().includes(searchValue.toLocaleLowerCase())
+    })
 
+    const numss = globalStateGamesFiltered.slice(0, (globalStateGamesFiltered.length - (globalStateGamesFiltered.length - Math.ceil((globalStateGamesFiltered.length / 8)))))
+    const isLiked = useAppSelector(state => state.games.showLiked)
 
-    const {data: heroes = []} = useGetGamesQuery('')
-                                        //25                //25                    // 4
-    const numss = heroes.slice(0, (heroes.length - (heroes.length  - Math.ceil((heroes.length / 8))))) 
+    const LGames = globalStateGames.filter(i => i.isLiked).filter(i => {
+        return i.title.toLowerCase().includes(searchValue.toLocaleLowerCase())
+    })
+    const likedNums = LGames.slice(0, (LGames.length - (LGames.length - Math.ceil((LGames.length / 8)))))
     console.log('render');
-    
+
     useEffect(() => {
-        setPages(Math.ceil(numss.length / 3))      
-    }, [numss])
+        isLiked ? setPages(Math.ceil(likedNums.length / 3)) : setPages(Math.ceil(numss.length / 3))
+
+    }, [numss, isLiked, likedNums])
+
 
 
     const handleLeftArrowClick = () => {
         if (offset === 0) return
-        setCount(count - 1)
-        setOffset(offset - 108)
+        dispatch(setMinusCount())
+        dispatch(setMinusOffset())
     }
 
     const handleRightArrowClick = () => {
-
         if (count < pages) {
-            setCount(count + 1)
-            setOffset(offset + 108)
+            console.log('clicked');
+            dispatch(setPlusCount())
+            dispatch(setPlusOffset())
         }
 
     }
@@ -46,7 +55,9 @@ const Carousel: React.FC = () => {
             <button onClick={handleLeftArrowClick} className='arrow' />
             <div className='visibleWindow'>
                 <div className='btns-list' style={{ transform: `translateX(-${offset}px)` }}>
-                    {numss.map(((i, index) => (
+                    {isLiked ? likedNums.map(((i, index) => (
+                        <button onClick={() => dispatch(pageChanged(index + 1))} key={i.appId} className='btn-pages'>{index + 1}</button>
+                    ))) : numss.map(((i, index) => (
                         <button onClick={() => dispatch(pageChanged(index + 1))} key={i.appId} className='btn-pages'>{index + 1}</button>
                     )))}
                 </div>
